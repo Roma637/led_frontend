@@ -9,7 +9,7 @@ function ChannList(props) {
     return(<div>  
         { props.channlist.map(
             (arr, ii, clist) =>
-            <div key={ii} > 
+            <div> 
                 <Chann name={arr[0]} num={ii} 
                 deletefunc={(numm1) =>  
                     {
@@ -19,13 +19,9 @@ function ChannList(props) {
                         alert(arr[0] + " Channel already in use")
                       }
                     }
-                      }  ></Chann> 
+                      } key={arr} ></Chann> 
             </div>) }
         </div>)
-
-    // return(<div>  
-    // { props.channlist.map((it1)=><h2 key={it1}> {it1} </h2>) }
-    // </div>)
 }
 
 export default ChannList

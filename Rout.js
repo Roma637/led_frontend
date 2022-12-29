@@ -31,7 +31,7 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc})
             <input type='number' min='0' name='tick' ></input>
             <select name='chann' >
                 {channlist.map((ch)=>
-                    <option value={ch} > {ch} </option>
+                    <option value={ch[0]} > {ch[0]} </option>
                 )}
             </select>
             <input type='number' min='0' max='255' name='intensity' ></input>

@@ -16,7 +16,7 @@ function RoutList({routlist,cfunc, channlist}) {
                 modifyFunc={(numm1, ab1) => { cfunc([...rlist.slice(0,numm1), ab1, ...rlist.slice(numm1+1) ]) ;}}
                 deletefunc={(numm1) => {cfunc([...rlist.slice(0,numm1), ...rlist.slice(numm1+1) ]) ;}} 
                 addDataFunc={(numm1, ab1) => { cfunc([...rlist.slice(0,numm1), 
-                                               {"name" : rlist[numm1]["name"], "data" : [...rlist[numm1]["data"], ab1]}, 
+                                               {...rlist[numm1],  "data" : [...rlist[numm1]["data"], ab1]}, 
                                               ...rlist.slice(numm1+1) ]) ;}}
                 channlist={channlist}
                 key={pos}
