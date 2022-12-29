@@ -1,6 +1,6 @@
 import RoutData from "./RoutData"
 
-function Rout({name, data, num, deletefunc, modifyFunc, channlist}){
+function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc}){
 
     return (
     
@@ -11,9 +11,9 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist}){
         {/* there should not be a delete button if theyre not allowed to delete it */}
         <button onClick={() => deletefunc(num)}> Delete </button> 
 
-        <table>
+        <table border="1">
 
-        <th></th>
+            <th></th>
 
         {data.map((tk, pos, tklist) => 
             <RoutData 
@@ -26,7 +26,7 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist}){
 
         </table>
 
-        <form onSubmit={(e1)=>{console.log(e1.target.tick, e1.target.chann, e1.target.intensity);}} >
+        <form onSubmit={(e1)=>{addDataFunc(num, [e1.target.tick.value, e1.target.chann.value, e1.target.intensity.value]); e1.preventDefault();}} >
 
             <input type='number' min='0' name='tick' ></input>
             <select name='chann' >
