@@ -10,13 +10,13 @@ function ChannList(props) {
         { props.channlist.map(
             (arr, ii, clist) =>
             <div> 
-                <Chann name={arr[0]} num={ii} 
+                <Chann name={arr[0]} num={ii} pin={arr[1]} driver={arr[2]}
                 deletefunc={(numm1) =>  
                     {
-                     if (arr[1] === 0 ) 
+                     if ( props.channcount[arr[0]] === 0 ) 
                       {props.cfunc([...clist.slice(0,numm1), ...clist.slice(numm1+1) ])}
                       else {
-                        alert(arr[0] + " Channel already in use")
+                        alert(arr[0] + " channel already in use")
                       }
                     }
                       } key={arr} ></Chann> 

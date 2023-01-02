@@ -1,6 +1,6 @@
 import RoutData from "./RoutData"
 
-function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc}){
+function Rout({name, data, num, deletefunc, modifyFunc, channlist, channOper, addDataFunc}){
 
     return (
     
@@ -8,8 +8,9 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc})
 
         {num+1} - {name}
 
-        {/* there should not be a delete button if theyre not allowed to delete it */}
-        <button onClick={() => deletefunc(num)}> Delete </button> 
+        <button onClick={() => { 
+            data.map((tk) => channOper(tk[1], -1));
+            deletefunc(num)}}> Delete rout </button> 
 
         <table border="1">
 
@@ -21,12 +22,16 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc})
             key={pos}
             num={pos}
             deletefunc={(numm1) => {modifyFunc(num, {"name" : name, "data" : [...tklist.slice(0,numm1), ...tklist.slice(numm1+1) ]}) ;} }
+            channOper={channOper}
             ></RoutData>
         )}
 
         </table>
 
-        <form onSubmit={(e1)=>{addDataFunc(num, [e1.target.tick.value, e1.target.chann.value, e1.target.intensity.value]); e1.preventDefault();}} >
+        <form onSubmit={(e1)=>{
+            addDataFunc(num, [e1.target.tick.value, e1.target.chann.value, e1.target.intensity.value, e1.target.modify.value]);
+            channOper(e1.target.chann.value,1);
+            e1.preventDefault();}} >
 
             <input type='number' min='0' name='tick' ></input>
             <select name='chann' >
@@ -35,6 +40,7 @@ function Rout({name, data, num, deletefunc, modifyFunc, channlist, addDataFunc})
                 )}
             </select>
             <input type='number' min='0' max='255' name='intensity' ></input>
+            <input type='text' name='modify' placeholder="Ramp"></input>
 
             <button type='submit' > Add </button>
 

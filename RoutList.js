@@ -1,6 +1,6 @@
 import Rout from "./Rout"
 
-function RoutList({routlist,cfunc, channlist}) {
+function RoutList({routlist,cfunc, channlist, channOper}) {
 
     // for code inside html, use {}
     //routlist is a list of objects
@@ -19,6 +19,7 @@ function RoutList({routlist,cfunc, channlist}) {
                                                {...rlist[numm1],  "data" : [...rlist[numm1]["data"], ab1]}, 
                                               ...rlist.slice(numm1+1) ]) ;}}
                 channlist={channlist}
+                channOper={channOper}
                 key={pos}
                 >
                   </Rout>) }
